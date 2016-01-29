@@ -258,6 +258,8 @@ module.exports =
     scopes: []
   });
 
+  console.log(_config.github.redirectUri);
+
   function auth() {
     if (_fbjsLibExecutionEnvironment.canUseDOM) window.location.assign(githubAuth.code.getUri());
   }
