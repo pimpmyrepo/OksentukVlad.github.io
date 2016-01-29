@@ -551,11 +551,11 @@ module.exports =
     github: {
       clientId: '106f3d239e9292dd1281',
       clientSecret: 'd873a36f6514986656a5012a49721a9efc16df15',
-      // redirectUri: 'http://pimpmyrepo.github.io/callback',
-      redirectUri: 'http://crmtronic.local:3000/callback'
+      redirectUri: 'http://pimpmyrepo.github.io/callback'
     }
   };
   module.exports = exports['default'];
+  // redirectUri: 'http://crmtronic.local:3000/callback',
 
 /***/ },
 /* 10 */
