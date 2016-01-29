@@ -65,35 +65,37 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactDom = __webpack_require__(21);
+  var _reactDom = __webpack_require__(25);
 
   var _reactDom2 = _interopRequireDefault(_reactDom);
 
-  var _fbjsLibExecutionEnvironment = __webpack_require__(4);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(3);
 
-  var _coreLocation = __webpack_require__(3);
+  var _coreLocation = __webpack_require__(5);
 
   var _coreLocation2 = _interopRequireDefault(_coreLocation);
 
-  var _componentsLayout = __webpack_require__(5);
+  var _componentsLayout = __webpack_require__(6);
 
   var _componentsLayout2 = _interopRequireDefault(_componentsLayout);
 
   var routes = {
     '/404': function _() {
-      return __webpack_require__(8);
-    }, '/500': function _() {
-      return __webpack_require__(9);
-    }, '/about': function about() {
       return __webpack_require__(10);
-    }, '/blog': function blog() {
+    }, '/500': function _() {
       return __webpack_require__(11);
-    }, '/blog/test-article-one': function blogTestArticleOne() {
+    }, '/about': function about() {
       return __webpack_require__(12);
-    }, '/blog/test-article-two': function blogTestArticleTwo() {
+    }, '/blog': function blog() {
       return __webpack_require__(13);
-    }, '/': function _() {
+    }, '/blog/test-article-one': function blogTestArticleOne() {
       return __webpack_require__(14);
+    }, '/blog/test-article-two': function blogTestArticleTwo() {
+      return __webpack_require__(15);
+    }, '/callback': function callback() {
+      return __webpack_require__(16);
+    }, '/': function _() {
+      return __webpack_require__(17);
     } }; // Auto-generated on build. See tools/lib/routes-loader.js
 
   var route = function route(path, callback) {
@@ -220,6 +222,65 @@ module.exports =
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+  module.exports = require("fbjs/lib/ExecutionEnvironment");
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  exports.auth = auth;
+  exports.getToken = getToken;
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+  var _config = __webpack_require__(9);
+
+  var _clientOauth2 = __webpack_require__(21);
+
+  var _clientOauth22 = _interopRequireDefault(_clientOauth2);
+
+  var _fbjsLibExecutionEnvironment = __webpack_require__(3);
+
+  var githubAuth = new _clientOauth22['default']({
+    clientId: _config.github.clientId,
+    clientSecret: _config.github.clientSecret,
+    accessTokenUri: 'https://github.com/login/oauth/access_token',
+    authorizationUri: 'https://github.com/login/oauth/authorize',
+    authorizationGrants: ['credentials'],
+    redirectUri: _config.github.redirectUri,
+    scopes: []
+  });
+
+  function auth() {
+    if (_fbjsLibExecutionEnvironment.canUseDOM) window.location.assign(githubAuth.code.getUri());
+  }
+
+  function getToken() {
+    if (_fbjsLibExecutionEnvironment.canUseDOM) {
+      var uri = window.location.href;
+
+      githubAuth.code.getToken(uri).then(function (user) {
+        console.log(user);
+
+        user.request({
+          method: 'get',
+          url: 'https://api.github.com/user'
+        }).then(function (res) {
+          return console.log(res);
+        });
+      });
+    }
+  }
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -236,17 +297,17 @@ module.exports =
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-  var _fbjsLibExecutionEnvironment = __webpack_require__(4);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(3);
 
-  var _historyLibCreateBrowserHistory = __webpack_require__(18);
+  var _historyLibCreateBrowserHistory = __webpack_require__(22);
 
   var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
 
-  var _historyLibCreateMemoryHistory = __webpack_require__(19);
+  var _historyLibCreateMemoryHistory = __webpack_require__(23);
 
   var _historyLibCreateMemoryHistory2 = _interopRequireDefault(_historyLibCreateMemoryHistory);
 
-  var _historyLibUseQueries = __webpack_require__(20);
+  var _historyLibUseQueries = __webpack_require__(24);
 
   var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
 
@@ -256,13 +317,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-  module.exports = require("fbjs/lib/ExecutionEnvironment");
-
-/***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -283,9 +338,9 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  __webpack_require__(15);
+  __webpack_require__(18);
 
-  var _Navigation = __webpack_require__(7);
+  var _Navigation = __webpack_require__(8);
 
   var _Navigation2 = _interopRequireDefault(_Navigation);
 
@@ -308,7 +363,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -343,9 +398,9 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  __webpack_require__(16);
+  __webpack_require__(19);
 
-  var _coreLocation = __webpack_require__(3);
+  var _coreLocation = __webpack_require__(5);
 
   var _coreLocation2 = _interopRequireDefault(_coreLocation);
 
@@ -425,7 +480,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -446,9 +501,9 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  __webpack_require__(17);
+  __webpack_require__(20);
 
-  var _Link = __webpack_require__(6);
+  var _Link = __webpack_require__(7);
 
   var _Link2 = _interopRequireDefault(_Link);
 
@@ -481,7 +536,29 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 8 */
+/* 9 */
+/***/ function(module, exports) {
+
+  'use strict';
+
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  exports['default'] = {
+    title: 'pimpmyrepo',
+    description: 'Pimp my repo',
+    googleAnalyticsId: 'UA-XXXXX-X',
+    github: {
+      clientId: '106f3d239e9292dd1281',
+      clientSecret: 'd873a36f6514986656a5012a49721a9efc16df15',
+      // redirectUri: 'http://pimpmyrepo.github.io/callback',
+      redirectUri: 'http://crmtronic.local:3000/callback'
+    }
+  };
+  module.exports = exports['default'];
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -546,7 +623,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 9 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -617,7 +694,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 10 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -682,7 +759,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 11 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -747,7 +824,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 12 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -812,7 +889,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 13 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -877,7 +954,73 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 14 */
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _react = __webpack_require__(1);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _coreGithub = __webpack_require__(4);
+
+  var _default = (function (_Component) {
+    _inherits(_default, _Component);
+
+    function _default() {
+      _classCallCheck(this, _default);
+
+      _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
+    }
+
+    _createClass(_default, [{
+      key: 'componentWillMount',
+      value: function componentWillMount() {
+        (0, _coreGithub.getToken)();
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'div',
+          null,
+          _react2['default'].createElement(
+            'h1',
+            null,
+            'Callback'
+          ),
+          _react2['default'].createElement(
+            'p',
+            null,
+            'YAHAAAAA.'
+          )
+        );
+      }
+    }]);
+
+    return _default;
+  })(_react.Component);
+
+  exports['default'] = _default;
+  module.exports = exports['default'];
+
+/***/ },
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -906,6 +1049,8 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
+  var _coreGithub = __webpack_require__(4);
+
   var _default = (function (_Component) {
     _inherits(_default, _Component);
 
@@ -916,6 +1061,11 @@ module.exports =
     }
 
     _createClass(_default, [{
+      key: 'onClick',
+      value: function onClick() {
+        (0, _coreGithub.auth)();
+      }
+    }, {
       key: 'render',
       value: function render() {
         return _react2['default'].createElement(
@@ -930,6 +1080,16 @@ module.exports =
             'p',
             null,
             'Coming soon.'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.onClick },
+            'GITHUB'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.showRepos },
+            'Repos'
           )
         );
       }
@@ -942,7 +1102,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(2)();
@@ -956,7 +1116,7 @@ module.exports =
 
 
 /***/ },
-/* 16 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(2)();
@@ -970,7 +1130,7 @@ module.exports =
 
 
 /***/ },
-/* 17 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(2)();
@@ -984,25 +1144,31 @@ module.exports =
 
 
 /***/ },
-/* 18 */
+/* 21 */
+/***/ function(module, exports) {
+
+  module.exports = require("client-oauth2");
+
+/***/ },
+/* 22 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/createBrowserHistory");
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/createMemoryHistory");
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/useQueries");
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports) {
 
   module.exports = require("react-dom");
